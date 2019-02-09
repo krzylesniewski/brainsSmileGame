@@ -1,32 +1,68 @@
+.container {
+    width: 700px;
+    margin: 0 auto;
+    background-image: url("./img/doodles.png");
+    /* =========================================================================
+ This pattern is downloaded from www.toptal.com/designers/subtlepatterns/
+ If you need more, that's where to get'em.
+ ======================================================================== */
+}
 .App {
-  text-align: center;
+    width: 100vw;
+}
+.boardBackground {
+    width: 600px;
+    margin: 0 auto;
+    position: relative;
+    background: rgba(255, 0, 0, .7);
+    border: 3px solid black;
+    border-radius: 15px;
+}
+.boardBackground .board {
+
+    display: flex;
+    width: 500px;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    border-radius: 5px;
+
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.boardBackground .board button {
+    width: 50px;
+    height: 50px;
+    border: none;
+    display: block;
+    background: rgba(255, 255, 255, .3);
+    margin: 3px 3px;
+    font-size: 38px;
+    text-align: center;
+
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.fa-sad-tear {
+    color: red;
 }
 
-.App-link {
-  color: #61dafb;
+.fa-meh {
+    color: blue;
+}
+.fa-smile, .fa-chess-pawn {
+    color: yellow;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.boardBackground .board button:hover {
+    cursor: pointer;
+}
+
+.boardBackground .stepLimit {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
+.boardBackground .levelID {
+    position: absolute;
+    top: 60px;
+    right: 30px;
 }
