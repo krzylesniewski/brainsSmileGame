@@ -3,22 +3,23 @@ import Square from './Square'
 
 export default class Board extends Component {
 
-    renderSquare(i) {
+    renderSquare(i, id) {
         return <Square
             value={i}
-            onClick = {()=>this.props.onClick(i)}
+            id={id}
+            onClick={() => this.props.onClick(i, id)}
         />
     }
 
-
     render() {
         const currentBoard = this.props.currentBoard.squares;
-        const stepLimit = this.props.currentBoard.stepLimit;
-        const levelID = this.props.currentBoard.levelID;
+        const stepLimit = this.props.stepLimit;
+        const levelID = this.props.levelID;
         const draw = currentBoard.map((step, move) => {
             return (
                 <div key={move}>
-                    {this.renderSquare(step)}
+                    {this.renderSquare(step, move)}
+                    {/*{console.log(step)}*/}
                 </div>
             )
         });

@@ -17,14 +17,14 @@ export default function Square(props) {
         else if(data === 1) {
             return type[0]
         } else if (data === 4) {
-            return type[4]
+            return type[3]
         }
     }
 
     return(
         <React.Fragment>
             <button
-                onClick={props.onClick}
+                onClick={()=>props.onClick(this)}
             >{typeHandler(props.value)}</button>
         </React.Fragment>
     )
