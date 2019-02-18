@@ -34,19 +34,51 @@ export default class App extends Component {
         // console.log(i, id);
         if (board[id] === 0) {
             board[id] = 4;
+            this.stateChangeHandle(id, board);
             this.setState({
                 history: history.concat({
                     squares: board,
                 }),
                 stepNumber: history.length,
-                isLevelLoaded: false,
             });
-            this.stateChangeHandle(id, board);
+            
             // wywołanie sprawdzenia ktore elementy maja się zmienić
             // złapać ID - > Spradzić pozić wszystkie kierunki
             // jeżeli znajdziemy element o "i" 3 || 4 zwiększyć wszystkim podrodze i++;
             //
         }
+    }
+
+    updateStateOfSingleSquare(id, board) {
+        console.log("id",id,"Pole do zmiany",board[id]);
+        if(board[id]!==0 &&board[id]<3){
+            board[id]++;
+        }
+        console.log('POle po zmianie', board[id])
+    }
+
+    squareNewStateFinder(arr, board) {
+        // TODO Dopisać kiedyś prawdzanie czy warto sprawdzać
+        console.log(arr);
+        let start = null;
+        let startID = null;
+        let end = null;
+        let endID = null;
+        arr.forEach((cell,key) => {
+            if(cell.value >= 3 && start === null) {
+                start = cell.id;
+                startID = key;
+            } else if (cell.value >= 3 && start !== null){
+                end = cell.id;
+                endID = key;
+            }
+        })
+        if(start !== null && end !== null){
+            for(let i = startID+1; i<endID; i++){
+                this.updateStateOfSingleSquare(arr[i].id, board);
+            }
+        }
+        // console.log(start, startID, end, endID)
     }
 
     stateChangeHandle(id, board) {
@@ -64,28 +96,39 @@ export default class App extends Component {
         // złapać skos 2
         let xTwoToCheck = this.returnXTwo(id,board);
 
-        // Sprawdzanie zwróconych dabilc. 
-
-        console.log('row', rowToCheck);
-        console.log('col', colToCheck);
+        // Sprawdzanie zwróconych tabilc. 
+        this.squareNewStateFinder(rowToCheck, board);
+        this.squareNewStateFinder(colToCheck, board);
     }
+
     returnRow(num, board){
         let result = [];
         let x = 8 * num;
         for(let i = x; i<8+x; i++){
-            result.push(board[i])
+            result.push({id: i ,value: board[i] });
         }
         return result;
     }
+
     returnCol(num, board){
         let result = [];
         for(let i = num; i<48; i+=8){
-            result.push(board[i]);
+            result.push({id: i ,value: board[i] });
         }
         return result;
     }
-    returnXOne(num){}
-    returnXTwo(num){}
+    returnXOne(num){
+        let result = [];
+
+        return result;
+    }
+    returnXTwo(num){
+        let result = [];
+
+        return result;
+    }
+
+    
 
 // **************************************************************** //
 // prototype of level
@@ -110,6 +153,15 @@ export default class App extends Component {
             0, 0, 3, 0, 0, 0, 0, 0,
         ];
 
+        // const level33 = new this.Level(33, 4);
+        // level33.initialSet = [
+        //     0, 0, 0, 0, 0, 0, 0, 0,
+        //     0, 0, 0, 0, 0, 2, 0, 0,
+        //     0, 0, 0, 0, 2, 2, 0, 0,
+        //     0, 2, 2, 2, 2, 3, 0, 0,
+        //     0, 2, 2, 2, 2, 0, 0, 0,
+        //     0, 0, 0, 0, 0, 0, 0, 0,
+        // ];
         const level33 = new this.Level(33, 4);
         level33.initialSet = [
             0, 0, 0, 0, 0, 0, 0, 0,
