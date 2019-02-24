@@ -2,6 +2,16 @@ import React, {Component} from 'react';
 import Square from './Square'
 
 export default class Board extends Component {
+    constructor(props) {
+        super(props);
+        let color = '255,187,17';
+        if (1 < props.levelID < 10) {
+
+        }
+        this.state = {
+            backgroundColor: color,
+        }
+    }
 
     renderSquare(i, id) {
         return <Square
@@ -23,8 +33,12 @@ export default class Board extends Component {
                 </div>
             )
         });
+
+        const gameStyle = {
+            background: `rgba(${this.state.backgroundColor}, .7)`,
+        };
         return (
-            <div className="boardBackground">
+            <div className="boardBackground" style={gameStyle}>
                 <div className="board">
                     {draw}
                 </div>

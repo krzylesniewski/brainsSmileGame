@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Board from './components/Board'
+import LevelPicker from './components/LevelPicker'
 
 export default class App extends Component {
     constructor(props) {
@@ -17,7 +18,7 @@ export default class App extends Component {
     }
 
     // **************************************************************** //
-    setPickedLevelToHistory(pickedLevel) {
+    setPickedLevelToHistory = (pickedLevel) => {
         this.setState({
             history: [{
                 squares: pickedLevel.initialSet,
@@ -25,7 +26,7 @@ export default class App extends Component {
             stepLimit: pickedLevel.moveLimit,
             levelID: pickedLevel.id,
         })
-    }
+    };
 
     handleClick(i, id) {
         const history = this.state.history.slice(0, this.state.stepNumber + 1);
@@ -72,7 +73,7 @@ export default class App extends Component {
                 end = cell.id;
                 endID = key;
             }
-        })
+        });
         if(start !== null && end !== null){
             for(let i = startID+1; i<endID; i++){
                 this.updateStateOfSingleSquare(arr[i].id, board);
@@ -99,6 +100,8 @@ export default class App extends Component {
         // Sprawdzanie zwróconych tabilc. 
         this.squareNewStateFinder(rowToCheck, board);
         this.squareNewStateFinder(colToCheck, board);
+        this.squareNewStateFinder(xOneToCheck, board);
+        this.squareNewStateFinder(xTwoToCheck, board);
     }
 
     returnRow(num, board){
@@ -117,83 +120,32 @@ export default class App extends Component {
         }
         return result;
     }
-    returnXOne(num){
+    returnXOne(num, board){
+        let result = [];
+        for(let i = num; i<48; i+=7){
+            result.push({id: i ,value: board[i] });
+        }
+        return result;
+    }
+    returnXTwo(num, board){
         let result = [];
 
         return result;
     }
-    returnXTwo(num){
-        let result = [];
-
-        return result;
-    }
-
-    
-
-// **************************************************************** //
-// prototype of level
-    Level(number, moveLimit) {
-        this.id = number;
-        this.moveLimit = moveLimit;
-        this.initialSet = Array(48).fill(0);
-    }
-
 
     // **************************************************************** //
     render() {
-
-        // Generowane levele
-        const level27 = new this.Level(27, 4);
-        level27.initialSet = [
-            0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 2, 1, 0, 0,
-            0, 0, 0, 2, 1, 1, 0, 0,
-            0, 0, 0, 2, 1, 0, 0, 0,
-            0, 0, 0, 2, 0, 0, 0, 0,
-            0, 0, 3, 0, 0, 0, 0, 0,
-        ];
-
-        // const level33 = new this.Level(33, 4);
-        // level33.initialSet = [
-        //     0, 0, 0, 0, 0, 0, 0, 0,
-        //     0, 0, 0, 0, 0, 2, 0, 0,
-        //     0, 0, 0, 0, 2, 2, 0, 0,
-        //     0, 2, 2, 2, 2, 3, 0, 0,
-        //     0, 2, 2, 2, 2, 0, 0, 0,
-        //     0, 0, 0, 0, 0, 0, 0, 0,
-        // ];
-        const level33 = new this.Level(33, 4);
-        level33.initialSet = [
-            0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 2, 0, 0,
-            0, 0, 0, 0, 2, 2, 0, 0,
-            0, 2, 2, 2, 2, 3, 0, 0,
-            0, 2, 2, 2, 2, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0,
-        ];
+    const {history, stepLimit, levelID} = this.state;
         return (
             <div className="App ">
                 <div className="container">
-                    <h1>Uśmiech Proszę</h1>
-                    <div className="controls">
-                        <p>level picekr</p>
-                        <button
-                            onClick={() => {
-                                this.setPickedLevelToHistory(level27)
-                            }}>
-                            27
-                        </button>
-                        <button
-                            onClick={() => {
-                                this.setPickedLevelToHistory(level33)
-                            }}>
-                            33
-                        </button>
-                    </div>
+                    <LevelPicker
+                        setPickedLevelToHistory={this.setPickedLevelToHistory}
+                    />
                     <Board
-                        currentBoard={this.state.history[this.state.history.length - 1]}
-                        stepLimit={this.state.stepLimit}
-                        levelID={this.state.levelID}
+                        currentBoard={history[history.length - 1]}
+                        stepLimit={stepLimit}
+                        levelID={levelID}
                         onClick={(i, id) => this.handleClick(i, id)}
                     />
                 </div>

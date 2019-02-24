@@ -24,8 +24,9 @@ export default function Square(props) {
     return(
         <React.Fragment>
             <button
-                onClick={()=>props.onClick(this)}
-            >{typeHandler(props.value)}</button>
+                onClick={()=>props.onClick(this)}>
+                    {typeHandler(props.value)}
+            </button>
         </React.Fragment>
     )
 }
