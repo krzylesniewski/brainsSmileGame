@@ -3,6 +3,7 @@ import './App.css';
 import Board from './components/Board'
 import LevelPicker from './components/LevelPicker'
 
+
 export default class App extends Component {
     constructor(props) {
         super(props);
@@ -55,7 +56,7 @@ export default class App extends Component {
         if(board[id]!==0 &&board[id]<3){
             board[id]++;
         }
-        console.log('POle po zmianie', board[id])
+        console.log('Pole po zmianie', board[id])
     }
 
     squareNewStateFinder(arr, board) {
@@ -79,7 +80,6 @@ export default class App extends Component {
                 this.updateStateOfSingleSquare(arr[i].id, board);
             }
         }
-        // console.log(start, startID, end, endID)
     }
 
     stateChangeHandle(id, board) {
@@ -153,6 +153,3 @@ export default class App extends Component {
         );
     }
 }
-
-
-

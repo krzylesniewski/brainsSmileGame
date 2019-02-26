@@ -2,16 +2,6 @@ import React, {Component} from 'react';
 import Square from './Square'
 
 export default class Board extends Component {
-    constructor(props) {
-        super(props);
-        let color = '255,187,17';
-        if (1 < props.levelID < 10) {
-
-        }
-        this.state = {
-            backgroundColor: color,
-        }
-    }
 
     renderSquare(i, id) {
         return <Square
@@ -19,24 +9,38 @@ export default class Board extends Component {
             id={id}
             onClick={() => this.props.onClick(i, id)}
         />
-    }
+    };
+
+    backgroundColorPicker(id) {
+        if (id >= 0 && id <= 10) {
+            return '255,187,17'
+        } else if (id >= 11 && id <= 20) {
+            return '240,109,6'
+        } else if (id >= 21 && id <= 30) {
+            return '208,13,30'
+        } else if (id >= 31 && id <= 40) {
+            return '176,0,181'
+        } else if (id >= 41 && id < 50) {
+            return '102,102,102'
+        }
+    };
+
 
     render() {
         const currentBoard = this.props.currentBoard.squares;
-        const stepLimit = this.props.stepLimit;
-        const levelID = this.props.levelID;
+        const {stepLimit, levelID} = this.props;
         const draw = currentBoard.map((step, move) => {
             return (
                 <div key={move}>
                     {this.renderSquare(step, move)}
-                    {/*{console.log(step)}*/}
                 </div>
             )
         });
 
         const gameStyle = {
-            background: `rgba(${this.state.backgroundColor}, .7)`,
+            background: `rgba(${this.backgroundColorPicker(levelID)}, .7)`,
         };
+
         return (
             <div className="boardBackground" style={gameStyle}>
                 <div className="board">

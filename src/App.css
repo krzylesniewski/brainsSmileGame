@@ -7,17 +7,19 @@
  If you need more, that's where to get'em.
  ======================================================================== */
 }
+
 .App {
     width: 100vw;
 }
+
 .boardBackground {
     width: 600px;
     margin: 0 auto;
     position: relative;
-    /*background: rgba(255, 0, 0, .7);*/
     border: 3px solid black;
     border-radius: 15px;
 }
+
 .boardBackground .board {
 
     display: flex;
@@ -25,7 +27,6 @@
     flex-wrap: wrap;
     margin: 0 auto;
     border-radius: 5px;
-
 }
 
 .boardBackground .board button {
@@ -37,7 +38,6 @@
     margin: 3px 3px;
     font-size: 38px;
     text-align: center;
-
 }
 
 .fa-sad-tear {
@@ -47,10 +47,10 @@
 .fa-meh {
     color: blue;
 }
+
 .fa-smile, .fa-chess-pawn {
     color: yellow;
 }
-
 
 .boardBackground .board button:hover {
     cursor: pointer;
@@ -61,6 +61,7 @@
     top: 30px;
     right: 30px;
 }
+
 .boardBackground .levelID {
     position: absolute;
     top: 60px;
