@@ -1,0 +1,172 @@
+.emote {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: transparent;
+    box-sizing: border-box;
+    border: 2px solid #666;
+    box-shadow: 3px 5px 5px #444;
+    position: relative;
+    left: -3px;
+
+}
+
+.lips {
+    background: #F0C419;
+    width: 50px;
+    height: 5px;
+    border-radius: 5%;
+    position: absolute;
+    bottom: 25px;
+    left: 15px;
+}
+
+.sad {
+    background: #405074;
+}
+
+.sad .lips {
+    width: 50px;
+    height: 5px;
+}
+
+.sad .lips::after {
+    background: #405074;
+}
+
+.smile {
+    background: #FBD971;
+}
+
+.smile .lips {
+    width: 50px;
+    height: 25px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    bottom: 15px;
+}
+
+.smile .lips::after {
+    content: '';
+    display: block;
+    position: relative;
+    left: 5px;
+    width: 40px;
+    height: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background: #FBD971;
+}
+
+.verySad {
+    background: #E32213;
+}
+
+.verySad .lips {
+    width: 50px;
+    height: 25px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    bottom: 15px;
+    position: absolute;
+}
+
+.verySad .lips::after {
+    content: '';
+    display: block;
+    position: relative;
+    left: 5px;
+    top: 5px;
+    width: 40px;
+    height: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background: #E32213;
+}
+
+.face {
+    width: 80px;
+    height: 80px;
+    position: relative;
+}
+
+.eye {
+    background: #AF8066;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+}
+
+.left {
+    left: 13px;
+}
+
+.right {
+    right: 15px;
+}
+.bg {
+    background: #405074;
+}
+.btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #0EC518;
+    border: 3px solid #fff;
+}
+.user {
+    width: 80px;
+    height: 80px;
+    position: relative;
+}
+
+.pawn {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: -4px;
+    left: -3px;
+}
+
+.pawn span {
+    position: relative;
+    top: 40px;
+    left: 31px;
+    z-index: 10;
+    font-size: 30px;
+}
+
+
+.pawnTop {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #FB1;
+    position: absolute;
+    top: 5px;
+    left: 25px;
+    box-shadow: 3px 5px 5px #444;
+}
+
+.pawnMid {
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 50px solid #FB1;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.pawnBtm {
+    width: 60px;
+    height: 15px;
+    background: #FB1;
+    position: absolute;
+    top: 65px;
+    left: 10px;
+    border-top-left-radius: 30%;
+    border-top-right-radius: 30%;
+    box-shadow: 3px 5px 5px #444;
+}

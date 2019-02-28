@@ -52,11 +52,9 @@ export default class App extends Component {
     }
 
     updateStateOfSingleSquare(id, board) {
-        console.log("id",id,"Pole do zmiany",board[id]);
         if(board[id]!==0 &&board[id]<3){
             board[id]++;
         }
-        console.log('Pole po zmianie', board[id])
     }
 
     squareNewStateFinder(arr, board) {
@@ -86,7 +84,7 @@ export default class App extends Component {
         //ustalamy rząd
         let row = Math.floor(id / 8);
         let col = id % 8;
-        console.log(id, row, col);
+        console.log("id:",id, "row:",row, "row:",col);
         // ID: 14, ROW: 1 COL:6
         // Złapać cały rząd
         let rowToCheck = this.returnRow(row,board);

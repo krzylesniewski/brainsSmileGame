@@ -1,7 +1,7 @@
 .container {
-    width: 700px;
+    width: 1100px;
     margin: 0 auto;
-    background-image: url("./img/doodles.png");
+    background-image: url("components/style/img/doodles.png");
     /* =========================================================================
  This pattern is downloaded from www.toptal.com/designers/subtlepatterns/
  If you need more, that's where to get'em.
@@ -10,60 +10,5 @@
 
 .App {
     width: 100vw;
-}
-
-.boardBackground {
-    width: 600px;
-    margin: 0 auto;
-    position: relative;
-    border: 3px solid black;
-    border-radius: 15px;
-}
-
-.boardBackground .board {
-
-    display: flex;
-    width: 500px;
-    flex-wrap: wrap;
-    margin: 0 auto;
-    border-radius: 5px;
-}
-
-.boardBackground .board button {
-    width: 50px;
-    height: 50px;
-    border: none;
-    display: block;
-    background: rgba(255, 255, 255, .3);
-    margin: 3px 3px;
-    font-size: 38px;
-    text-align: center;
-}
-
-.fa-sad-tear {
-    color: red;
-}
-
-.fa-meh {
-    color: blue;
-}
-
-.fa-smile, .fa-chess-pawn {
-    color: yellow;
-}
-
-.boardBackground .board button:hover {
-    cursor: pointer;
-}
-
-.boardBackground .stepLimit {
-    position: absolute;
-    top: 30px;
-    right: 30px;
-}
-
-.boardBackground .levelID {
-    position: absolute;
-    top: 60px;
-    right: 30px;
+    height: 100vh;
 }

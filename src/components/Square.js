@@ -1,31 +1,56 @@
 import React from 'react';
+import './style/Square.css'
 
 export default function Square(props) {
     const type = [
-        <i className="fas fa-sad-tear"></i>,
-        <i className="fas fa-meh"></i>,
-        <i className="fas fa-smile"></i>,
-        <i className="fas fa-chess-pawn"></i>,
+        <div className="emote verySad">
+            <div className="face">
+                <div className="eye left"/>
+                <div className="eye right"/>
+                <div className="lips"/>
+            </div>
+        </div>,
+        <div className="emote sad">
+            <div className="face">
+                <div className="eye left"/>
+                <div className="eye right"/>
+                <div className="lips"/>
+            </div>
+        </div>,
+        <div className="emote smile">
+            <div className="face">
+                <div className="eye left"/>
+                <div className="eye right"/>
+                <div className="lips"/>
+            </div>
+        </div>,
+        <div className="user">
+            <div className="pawn">
+                <div className="pawnTop"/>
+                <div className="pawnMid"/>
+                <div className="pawnBtm"/>
+            </div>
+        </div>,
+
     ];
 
-    function typeHandler(data){
-        if(data === 3) {
+    function typeHandler(data) {
+        if (data === 3) {
             return type[2]
-        } else if(data === 2) {
+        } else if (data === 2) {
             return type[1]
-        }
-        else if(data === 1) {
+        } else if (data === 1) {
             return type[0]
         } else if (data === 4) {
             return type[3]
         }
     }
 
-    return(
+    return (
         <React.Fragment>
             <button
-                onClick={()=>props.onClick(this)}>
-                    {typeHandler(props.value)}
+                onClick={() => props.onClick(this)}>
+                {typeHandler(props.value)}
             </button>
         </React.Fragment>
     )

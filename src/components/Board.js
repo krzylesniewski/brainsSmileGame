@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Square from './Square'
+import './style/Board.css'
 
 export default class Board extends Component {
 
@@ -47,10 +48,21 @@ export default class Board extends Component {
                     {draw}
                 </div>
                 <div className="stepLimit">
-                    {stepLimit}
+                    <div className="user">
+                        <div className="pawn">
+                            <span>{stepLimit}</span>
+                            <div className="pawnTop"/>
+                            <div className="pawnMid"/>
+                            <div className="pawnBtm"/>
+                        </div>
+                    </div>
                 </div>
                 <div className="levelID">
                     {levelID}
+                </div>
+                <div className="helpers">
+                    <div className='icon' id="undoMove"/>
+                    <div className='icon' id="hintShow"/>
                 </div>
             </div>
         );
