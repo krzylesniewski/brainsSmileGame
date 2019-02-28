@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './style/LevelPicker.css'
 
 
 export default class LevelPicker extends Component {
@@ -423,6 +424,7 @@ export default class LevelPicker extends Component {
     render() {
         const levelList = this.state.allLevelsArr.map(level => {
             return <button
+                className="levelBtn"
                 key={level.id}
                 onClick={() => {
                     this.props.setPickedLevelToHistory(level)
@@ -431,8 +433,8 @@ export default class LevelPicker extends Component {
             </button>
         });
         return (
-            <div>
-                <h1>Uśmiech Proszę</h1>
+            <div className="mainLevelSelect">
+                <h1>SMILE</h1>
                 <div className="controls">
                     {levelList}
                 </div>

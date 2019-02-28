@@ -14,7 +14,7 @@ export default class Board extends Component {
 
     backgroundColorPicker(id) {
         if (id >= 0 && id <= 10) {
-            return '255,187,17'
+            return '255,150,100'
         } else if (id >= 11 && id <= 20) {
             return '240,109,6'
         } else if (id >= 21 && id <= 30) {

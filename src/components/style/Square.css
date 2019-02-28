@@ -22,7 +22,7 @@
 }
 
 .sad {
-    background: #405074;
+    background: #173068;
 }
 
 .sad .lips {
@@ -31,7 +31,7 @@
 }
 
 .sad .lips::after {
-    background: #405074;
+    background: #173068;
 }
 
 .smile {

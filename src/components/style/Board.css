@@ -1,5 +1,5 @@
 
-.boardBackground {
+  .boardBackground {
     width: 1000px;
     margin: 0 auto;
     position: relative;
@@ -34,13 +34,27 @@
 .boardBackground .stepLimit {
     position: absolute;
     top: 30px;
-    right: 30px;
+    right: 40px;
+    z-index: 2;
 }
 
 .boardBackground .levelID {
     position: absolute;
-    top: 60px;
-    right: 30px;
+    top: 40px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: dodgerblue;
+    border-radius: 20%;
+    border: 3px solid #fff;
+    font-size: 25px;
+    text-align: center;
+    transform: rotate(10deg);
+    z-index: 1;
+    line-height: 42px;
+    color: #eee;
+    text-shadow: 2px 1px 1px #222;
+    box-shadow: 3px 5px 5px #444;
 }
 
 .icon {
