@@ -422,6 +422,7 @@ export default class LevelPicker extends Component {
     }
 
     render() {
+        // this.props.getLevelFromLevelPicker();
         const levelList = this.state.allLevelsArr.map(level => {
             return <button
                 className="levelBtn"

@@ -4,7 +4,7 @@
     color: #FB1;
     letter-spacing: 10px;
     initial-letter: 2;
-    background-image: url("./img/ribbon.svg");
+    background-image: url("img/ribbon.svg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -23,7 +23,7 @@
 .control::before {
     content: '';
     display: block;
-    background-image: url('./img/ribbon.svg');
+    background-image: url('img/ribbon.svg');
     width: 200px;
     height: 50px;
     position: absolute;

@@ -72,11 +72,28 @@
 .boardBackground .helpers #undoMove{
     position: absolute;
     top: 150px;
-    background-image: url('./img/go-back-arrow.svg');
+    background-image: url('img/go-back-arrow.svg');
 }
 
 .boardBackground .helpers #hintShow{
     position: absolute;
     top: 500px;
-    background-image: url('./img/ask.svg');
+    background-image: url('img/ask.svg');
 }
+
+  @keyframes bounce {
+      0%, 20%, 60%, 100% {
+          -webkit-transform: translateY(0);
+          transform: translateY(0);
+      }
+
+      40% {
+          -webkit-transform: translateY(-20px);
+          transform: translateY(-20px);
+      }
+
+      80% {
+          -webkit-transform: translateY(-10px);
+          transform: translateY(-10px);
+      }
+  }

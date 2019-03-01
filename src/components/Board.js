@@ -61,8 +61,12 @@ export default class Board extends Component {
                     {levelID}
                 </div>
                 <div className="helpers">
-                    <div className='icon' id="undoMove"/>
-                    <div className='icon' id="hintShow"/>
+                    <div
+                        onClick={this.props.unDoMoveHandler}
+                        className='icon' id="undoMove"/>
+                    <div
+                        onClick={this.props.unDoMoveHandler}
+                        className='icon' id="hintShow"/>
                 </div>
             </div>
         );
