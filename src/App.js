@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './App.css';
+import './components/style/App.css';
 import Board from './components/Board'
 import LevelPicker from './components/LevelPicker'
 
@@ -10,7 +10,6 @@ export default class App extends Component {
         this.state = {
             history: [{
                 squares: Array(48).fill(null),
-                stepNumber: 0,
             }],
             stepLimit: 0,
             levelID: 0,
@@ -46,12 +45,16 @@ export default class App extends Component {
                 stepNumber: history.length,
             });
         }
-        this.gameStatusResolver();
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        // console.log("shouldComeponentUpdate", nextState);
+        // console.log(!(this.state.showWinModal || this.state.showLostModal))
+        return !(this.state.showWinModal || this.state.showLostModal) //TODO WAŻNE dlaczego musze dwa razy to wykonać
     }
 
     componentDidUpdate() {
         this.gameStatusResolver();
-        // TODO function to check game status [win=all state >3 , lost=move limit reach]
     }
 
     gameStatusResolver() {
@@ -65,16 +68,15 @@ export default class App extends Component {
 
         if (currentBoard.indexOf(2) < 0 && currentBoard.indexOf(1) < 0 && moveDone > 1) {
             console.log("Gratulacje wygrałeś");
-            // TODO conditional rendering => Model with game Win
-            // TODO block posobility to put more pawn f()
-            // this.setState({
-            //     showWinModal: true,
-            // });
+            this.setState({
+                showWinModal: true,
+            });
 
         } else if (moveDone >= stepLimit && moveDone > 1) {
             console.log("Koniec gry nie masz już więcej pionków");
-            // TODO conditional rendering => Model with game lost and button try again
-            // TODO block posobility to put more pawn f()
+            this.setState({
+                showLostModal: true,
+            });
         }
     }
 
@@ -153,13 +155,19 @@ export default class App extends Component {
     //function to finding squars to be check 3
     returnXOne(num, board) {
         let result = [];
+        const colLim = this.findCoordinateOfSingleSquare(num)[1];
+
         for (let i = num; i < 48; i += 7) {
-            result.push({id: i, value: board[i]});
+            if (this.findCoordinateOfSingleSquare(i)[1] <= colLim) {
+                result.push({id: i, value: board[i]});
+            }
         }
-        for (let i = num; i > 0; i -= 7) {
-            result.push({id: i, value: board[i]});
+        for (let i = num - 7; i > 0; i -= 7) {
+            if (this.findCoordinateOfSingleSquare(i)[1] >= colLim) {
+                result.push({id: i, value: board[i]});
+            }
         }
-        // console.log("returnXOne",result);
+        console.log("returnXOne[7]",result);
         // TODO use to check board limits findCoordinateOfSingleSquare
         return result;
     }
@@ -167,34 +175,88 @@ export default class App extends Component {
     //function to finding squars to be check 4
     returnXTwo(num, board) {
         let result = [];
+        const colLim = this.findCoordinateOfSingleSquare(num)[1];
+
         for (let i = num; i < 48; i += 9) {
-            result.push({id: i, value: board[i]});
+            if (this.findCoordinateOfSingleSquare(i)[1] >= colLim) {
+                result.push({id: i, value: board[i]});
+            }
         }
-        for (let i = num; i > 0; i -= 9) {
-            result.push({id: i, value: board[i]});
+        for (let i = num - 9; i > 0; i -= 9) {
+            if (this.findCoordinateOfSingleSquare(i)[1] <= colLim) {
+                result.push({id: i, value: board[i]});
+            }
         }
-        // console.log("returnXTwo",result);
-        // TODO use to check board limits findCoordinateOfSingleSquare
+        console.log("returnXTwo[9]",result);
         return result;
     }
+
+    unDoMoveHandler = () => {
+        const {history} = this.state;
+        if (history.length <= 1) {
+            return null
+        }
+        this.setState({
+            history: [...this.state.history].slice(0, this.state.history.length - 1)
+        })
+    };
+
+    // getLevelFromLevelPicker = (levID) => {
+    //     return this.state.allLevelsArr[5]
+    // };
+    winModalBtnHandler = () => {
+        console.log(this.state.levelID);
+        // const test = this.getLevelFromLevelPicker(5);
+        // console.log(test);
+        this.setState({
+            history: [{squares: Array(48).fill(null)}],
+            stepLimit: 0,
+            levelID: 0,
+            stepNumber: 0,
+            showWinModal: false,
+        });
+    };
+
+    lostModalBtnHandler = () => {
+        this.setState({
+            history: [...this.state.history].slice(0, 1),
+            showLostModal: false,
+        });
+    };
 
     // **************************************************************** //
     render() {
         const {history, stepLimit, levelID} = this.state;
-        const winModal = <div className="modal"> Gratulacje wygrałeś </div>;
+        const winModal = <div className="modal modalWin">
+            <h1 className="modalShow winH1">WoW you win, good job!!!</h1>
+            <button
+                onClick={this.winModalBtnHandler}
+                className="modalBtn winBtn">Next Level
+            </button>
+        </div>;
+        const lostModal = <div className="modal modalLost">
+            <h1 className="modalShow lostH1">Bad Luck ;( you lost</h1>
+            <button
+                onClick={this.lostModalBtnHandler}
+                className="modalBtn lostBtn">Try again
+            </button>
+        </div>;
         return (
             <div className="App ">
                 <div className="container">
                     <LevelPicker
                         setPickedLevelToHistory={this.setPickedLevelToHistory}
+                        // getLevelFromLevelPicker={this.getLevelFromLevelPicker}
                     />
                     <Board
                         currentBoard={history[history.length - 1]}
                         stepLimit={stepLimit}
                         levelID={levelID}
+                        unDoMoveHandler={this.unDoMoveHandler}
                         onClick={(i, id) => this.handleClick(i, id)}
                     />
-                    {this.state.showWinModal ? winModal : null}
+                    {this.state.showWinModal && winModal}
+                    {this.state.showLostModal && lostModal}
                 </div>
             </div>
         );
